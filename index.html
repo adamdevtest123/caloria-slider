@@ -127,14 +127,23 @@
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
   }
   .tray button:active { transform: scale(0.99); }
-  @keyframes shimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
+  .tray button {
+    position: relative;
+    overflow: hidden;
   }
-  .tray button.shimmer-active {
-    background: linear-gradient(105deg, #111 40%, #555 50%, #111 60%);
-    background-size: 200% auto;
-    animation: shimmer 0.9s ease forwards;
+  .tray button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 20%, rgba(255,255,255,0.18) 50%, transparent 80%);
+    transform: translateX(-100%);
+  }
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .tray button.shimmer-active::after {
+    animation: shimmer 0.75s ease forwards;
   }
 
   .fineprint {
