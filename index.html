@@ -544,6 +544,7 @@
   }
 
   function transition() {
+    if (!quizCard) return;
     const stage = quizCard.querySelector('[data-stage]');
     if (!stage) { renderQuiz(true); return; }
     isAnimating = true;
@@ -554,7 +555,7 @@
     }, 340);
   }
 
-  renderQuiz(true);
+  if (quizCard) renderQuiz(true);
 
   const dots = dotsEl.querySelectorAll('.dot');
   let current = 0;
